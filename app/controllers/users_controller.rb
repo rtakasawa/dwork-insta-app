@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  def show
-  end
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
 
   def new
     @user = User.new
-  end
-
-  def edit
   end
 
   def create
@@ -20,15 +14,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
+
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to feeds_path,notice: "ユーザー情報を更新しました！"
+    else
+      render :edit
     end
   end
 
@@ -46,6 +42,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :my_image, :my_image_cache)
     end
 end

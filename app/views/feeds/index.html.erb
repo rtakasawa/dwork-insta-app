@@ -28,5 +28,6 @@
 
 <br>
 
-<%= link_to 'New Feed', new_feed_path %>
+<%= link_to '新規投稿', new_feed_path %>
 <%= link_to 'お気に入り一覧', favorites_path %>
+<%= link_to 'マイページ', user_path(current_user.id) %>

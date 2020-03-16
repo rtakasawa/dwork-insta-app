@@ -226,7 +226,7 @@ end
 Finally, Capybara matchers are also supported in view specs:
 
 ```ruby
-RSpec.describe "todos/show.html.erb", type: :view do
+RSpec.describe "todos/edit.html.erb", type: :view do
   it "displays the todo title" do
     assign :todo, Todo.new(title: "Buy milk")
 
