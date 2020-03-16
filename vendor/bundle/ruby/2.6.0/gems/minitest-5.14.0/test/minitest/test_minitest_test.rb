@@ -28,19 +28,19 @@ class TestMinitestUnit < MetaMetaMetaTestCase
   basedir = Pathname.new(File.expand_path "lib/minitest") + "mini"
   basedir = basedir.relative_path_from(pwd).to_s
   MINITEST_BASE_DIR = basedir[/\A\./] ? basedir : "./#{basedir}"
-  BT_MIDDLE = ["#{MINITEST_BASE_DIR}/test.rb:161:in `each'",
-               "#{MINITEST_BASE_DIR}/test.rb:158:in `each'",
-               "#{MINITEST_BASE_DIR}/test.rb:139:in `run'",
-               "#{MINITEST_BASE_DIR}/test.rb:106:in `run'"]
+  BT_MIDDLE = ["#{MINITEST_BASE_DIR}/test.html:161:in `each'",
+               "#{MINITEST_BASE_DIR}/test.html:158:in `each'",
+               "#{MINITEST_BASE_DIR}/test.html:139:in `run'",
+               "#{MINITEST_BASE_DIR}/test.html:106:in `run'"]
 
   def test_filter_backtrace
     # this is a semi-lame mix of relative paths.
     # I cheated by making the autotest parts not have ./
     bt = (["lib/autotest.rb:571:in `add_exception'",
            "test/test_autotest.rb:62:in `test_add_exception'",
-           "#{MINITEST_BASE_DIR}/test.rb:165:in `__send__'"] +
+           "#{MINITEST_BASE_DIR}/test.html:165:in `__send__'"] +
           BT_MIDDLE +
-          ["#{MINITEST_BASE_DIR}/test.rb:29",
+          ["#{MINITEST_BASE_DIR}/test.html:29",
            "test/test_autotest.rb:422"])
     bt = util_expand_bt bt
 
@@ -54,18 +54,18 @@ class TestMinitestUnit < MetaMetaMetaTestCase
   end
 
   def test_filter_backtrace_all_unit
-    bt = (["#{MINITEST_BASE_DIR}/test.rb:165:in `__send__'"] +
+    bt = (["#{MINITEST_BASE_DIR}/test.html:165:in `__send__'"] +
           BT_MIDDLE +
-          ["#{MINITEST_BASE_DIR}/test.rb:29"])
+          ["#{MINITEST_BASE_DIR}/test.html:29"])
     ex = bt.clone
     fu = Minitest.filter_backtrace(bt)
     assert_equal ex, fu
   end
 
   def test_filter_backtrace_unit_starts
-    bt = (["#{MINITEST_BASE_DIR}/test.rb:165:in `__send__'"] +
+    bt = (["#{MINITEST_BASE_DIR}/test.html:165:in `__send__'"] +
           BT_MIDDLE +
-          ["#{MINITEST_BASE_DIR}/mini/test.rb:29",
+          ["#{MINITEST_BASE_DIR}/mini/test.html:29",
            "-e:1"])
 
     bt = util_expand_bt bt

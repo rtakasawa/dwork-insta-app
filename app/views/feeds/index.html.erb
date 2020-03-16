@@ -1,7 +1,5 @@
 <%= link_to "Logout", session_path(current_user.id), method: :delete %>
 
-<p id="notice"><%= notice %></p>
-
 <h1>トップページ</h1>
 
 <table>
@@ -9,7 +7,8 @@
     <tr>
       <th>Image</th>
       <th>Content</th>
-      <th colspan="3"></th>
+      <th>name</th>
+      <th colspan="3">aaa</th>
     </tr>
   </thead>
 
@@ -18,6 +17,7 @@
       <tr>
         <td><%= image_tag feed.image.to_s %></td>
         <td><%= feed.content %></td>
+        <td><%= feed.user.name %></td>        
         <td><%= link_to 'Show', feed %></td>
         <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
         <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -95,7 +95,7 @@ module Spring
         raise "Spring only supports Rails >= 4.2.0"
       end
 
-      # config/environments/test.rb will have config.cache_classes = true. However
+      # config/environments/test.html will have config.cache_classes = true. However
       # we want it to be false so that we can reload files. This is a hack to
       # override the effect of config.cache_classes = true. We can then actually
       # set config.cache_classes = false after loading the environment.

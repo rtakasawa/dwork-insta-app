@@ -127,7 +127,7 @@ implementing developer consoles and applying hot patches.
 code:
 
 ```ruby
-# test.rb
+# test.html
 require 'pry'
 
 class A

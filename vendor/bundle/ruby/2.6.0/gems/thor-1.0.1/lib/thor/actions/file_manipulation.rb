@@ -164,9 +164,9 @@ class Thor
     #
     # ==== Example
     #
-    #   prepend_to_file 'config/environments/test.rb', 'config.gem "rspec"'
+    #   prepend_to_file 'config/environments/test.html', 'config.gem "rspec"'
     #
-    #   prepend_to_file 'config/environments/test.rb' do
+    #   prepend_to_file 'config/environments/test.html' do
     #     'config.gem "rspec"'
     #   end
     #
@@ -186,9 +186,9 @@ class Thor
     #
     # ==== Example
     #
-    #   append_to_file 'config/environments/test.rb', 'config.gem "rspec"'
+    #   append_to_file 'config/environments/test.html', 'config.gem "rspec"'
     #
-    #   append_to_file 'config/environments/test.rb' do
+    #   append_to_file 'config/environments/test.html' do
     #     'config.gem "rspec"'
     #   end
     #

@@ -42,7 +42,7 @@ end
 
 spec = proc do |env|
   env.each{|k,v| ENV[k] = v}
-  sh "#{FileUtils::RUBY} test/test.rb"
+  sh "#{FileUtils::RUBY} test/test.html"
   env.each{|k,v| ENV.delete(k)}
 end
 
