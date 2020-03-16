@@ -1,6 +1,10 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:destroy]
 
+  def index
+    @favorites = current_user.favorites
+  end
+
   def create
     favorite = current_user.favorites.create(feed_id: params[:feed_id])
     redirect_to feeds_url,notice: "#{favorite.feed.user.name}さんのブログをお気に入り登録しました"
@@ -10,6 +14,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(id: params[:id]).destroy
     redirect_to feeds_url,notice: "#{favorite.feed.user.name}さんのブロクをお気に入り登録から解除しました"
   end
+
   private
     def set_favorite
       @favorite = Favorite.find(params[:id])
