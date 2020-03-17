@@ -59,7 +59,12 @@ class FeedsController < ApplicationController
 
   private
   def set_feed
+    # @feed = current_user.feeds.find(params[:id])
     @feed = Feed.find(params[:id])
+    if current_user == nil
+      flash[:notice] = "権限がありません"
+      redirect_to new_session_url
+    end
   end
 
   def feed_params
