@@ -28,9 +28,12 @@ class FeedsController < ApplicationController
     @feed = current_user.feeds.build(feed_params)
     respond_to do |format|
       if @feed.save
+        FeedMailer.feed_mail(@feed).deliver
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render :show, status: :created, location: @feed }
+        # redirect_to feeds_path, notice: 'Feed was successfully created.'
       else
+        # render :new
         format.html { render :new }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
