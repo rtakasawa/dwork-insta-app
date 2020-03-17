@@ -19,6 +19,9 @@ class FeedsController < ApplicationController
 
   def confirm
     @feed = current_user.feeds.build(feed_params)
+    return if @feed.valid?
+    flash[:notice] = "いずれかを入力してください"
+    render :new
   end
 
   def edit
@@ -31,9 +34,7 @@ class FeedsController < ApplicationController
         FeedMailer.feed_mail(@feed).deliver
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render :show, status: :created, location: @feed }
-        # redirect_to feeds_path, notice: 'Feed was successfully created.'
       else
-        # render :new
         format.html { render :new }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
@@ -46,6 +47,7 @@ class FeedsController < ApplicationController
         format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
         format.json { render :show, status: :ok, location: @feed }
       else
+        flash[:notice] = "いずれかを入力してください"
         format.html { render :edit }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
@@ -62,7 +64,6 @@ class FeedsController < ApplicationController
 
   private
   def set_feed
-    # @feed = current_user.feeds.find(params[:id])
     @feed = Feed.find(params[:id])
     if current_user == nil
       flash[:notice] = "権限がありません"
