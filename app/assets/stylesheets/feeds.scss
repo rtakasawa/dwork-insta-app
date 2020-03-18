@@ -1,3 +1,27 @@
-// Place all the styles related to the feeds controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.main-nav {
+  display: flex;
+}
+.main-nav li {
+  margin: 2px;
+  border-radius: 5px;
+  background: grey;
+  display: block;
+  padding: 10px;
+}
+.main-nav .logo {
+  color: white;
+}
+table {
+  margin: 0 auto;
+}
+.btn {
+  margin: 5px;
+  border-radius: 5px;
+  background: #bce8f1;
+  display: inline-block;
+  padding: 5px;
+}
+
+.btn-index {
+  color: #EFEFEF;
+}

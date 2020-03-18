@@ -1,0 +1,20 @@
+.header_image {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  margin-bottom: 10px;
+}
+.top {
+  position: relative;
+}
+.catch {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: calc(50% - 25px);
+  text-align: center;
+  font-size: 3vw;
+  line-height: 50px;
+  font-family: Comic Sans MS;
+  color: #EFEFEF;
+}

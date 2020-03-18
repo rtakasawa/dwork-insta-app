@@ -1,17 +1,30 @@
-<p>
-  <strong>My_Image:</strong>
-  <%= image_tag @user.my_image.to_s %>
-</p>
+<h1>マイページ</h1>
+<br>
+<ul>
+  <li class="btn-my-page"><%= link_to 'Edit', edit_user_path(@user) %></li>
+  <li class="btn-my-page"><%= link_to 'Back', feeds_path %></li>
+</ul>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<table>
+  <tr><td>自分の写真:<%= image_tag @user.my_image.to_s %></td></tr>
+  <tr><td>名前：<%= @user.name %></td></tr>
+  <tr><td>email：<%= @user.email %></td></tr>
+</table>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Back', feeds_path %>
+
+
+<!--<p>-->
+<!--  <strong>My_Image:</strong>-->
+  <%#= image_tag @user.my_image.to_s %>
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Name:</strong>-->
+  <%#= @user.name %>
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Email:</strong>-->
+  <%#= @user.email %>
+<!--</p>-->
