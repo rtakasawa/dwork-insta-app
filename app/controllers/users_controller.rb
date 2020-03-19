@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :set_user, only: [:edit, :update, :show]
 
   def new
     @user = User.new
@@ -25,14 +25,6 @@ class UsersController < ApplicationController
       redirect_to feeds_path,notice: "ユーザー情報を更新しました！"
     else
       render :edit
-    end
-  end
-
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
