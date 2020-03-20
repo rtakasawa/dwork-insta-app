@@ -8,7 +8,7 @@
 <table>
   <% @favorites.each do |favorite| %>
     <tr><td><%= image_tag favorite.feed.image.to_s %></td></tr>
-    <tr><td>投稿者：<%= favorite.user.name %></td></tr>
+    <tr><td>投稿者：<%= favorite.feed.user.name %></td></tr>
     <tr><td>投稿内容：<%= favorite.feed.content %></td></tr>
     <td><%= link_to 'お気に入り解除する', favorite_path(id: favorite.id), method: :delete, class: 'btn btn-danger' %></td>
   <% end %>
