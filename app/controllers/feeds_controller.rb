@@ -1,5 +1,7 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all
@@ -31,8 +33,8 @@ class FeedsController < ApplicationController
     @feed = current_user.feeds.build(feed_params)
     respond_to do |format|
       if @feed.save
-        # FeedMailer.feed_mail(@feed).deliver
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
+        FeedMailer.feed_mail(@feed).deliver
+        format.html { redirect_to @feed, notice: '投稿が完了しました！' }
         format.json { render :show, status: :created, location: @feed }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class FeedsController < ApplicationController
   def update
     respond_to do |format|
       if @feed.update(feed_params)
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
+        format.html { redirect_to @feed, notice: '編集が完了しました！' }
         format.json { render :show, status: :ok, location: @feed }
       else
         flash[:notice] = "いずれかを入力してください"
@@ -57,7 +59,7 @@ class FeedsController < ApplicationController
   def destroy
     @feed.destroy
     respond_to do |format|
-      format.html { redirect_to feeds_url, notice: 'Feed was successfully destroyed.' }
+      format.html { redirect_to feeds_url, notice: '削除が完了しました！' }
       format.json { head :no_content }
     end
   end
@@ -65,13 +67,18 @@ class FeedsController < ApplicationController
   private
   def set_feed
     @feed = Feed.find(params[:id])
-    if current_user == nil
-      flash[:notice] = "権限がありません"
-      redirect_to new_session_url
-    end
   end
 
   def feed_params
     params.require(:feed).permit(:image, :image_cache, :content)
   end
+
+  def ensure_correct_user
+    @feed = Feed.find_by(id:params[:id])
+    if @feed.user_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to new_session_url
+    end
+  end
+
 end

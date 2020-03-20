@@ -1,6 +1,6 @@
 <nav>
   <ul class="main-nav">
-    <li><%= link_to "Logout", session_path(current_user.id), method: :delete, class: "logo" %></li>
+    <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "logo" %></li>
     <li><%= link_to '新規投稿', new_feed_path,class: "logo" %></li>
     <li><%= link_to 'お気に入り一覧', favorites_path,class: "logo" %></li>
     <li><%= link_to 'マイページ', user_path(current_user.id),class: "logo" %></li>
@@ -16,10 +16,10 @@
     </tr>
     <tr><td>投稿者：<%= feed.user.name %></td></tr>
     <tr><td>投稿内容：<%= feed.content %></td></tr>
-    <tr><td class="btn"><%= link_to 'Show',feed %></td></tr>
+    <tr><td class="btn"><%= link_to '詳細',feed %></td></tr>
       <% if feed.user_id == current_user.id %>
-        <tr><td class="btn"><%= link_to 'Edit', edit_feed_path(feed) %></td></tr>
-        <tr><td class="btn"><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' }%></td></tr>
+        <tr><td class="btn"><%= link_to '編集', edit_feed_path(feed) %></td></tr>
+        <tr><td class="btn"><%= link_to '削除', feed, method: :delete, data: { confirm: '本当に削除していいですか?' }%></td></tr>
       <% end %>
   <% end %>
 </table>
