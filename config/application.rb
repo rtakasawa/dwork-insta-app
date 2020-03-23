@@ -13,6 +13,7 @@ module InstaApp
     config.load_defaults 5.2
     config.generators do |g|
       g.javascripts false
+      g.assetsfalse
       g.helper false
       g.test_framework false
     end

@@ -8,6 +8,7 @@ class FeedsController < ApplicationController
   end
 
   def show
+
     @favorite = current_user.favorites.find_by(feed_id: @feed.id)
   end
 
@@ -73,8 +74,12 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(:image, :image_cache, :content)
   end
 
+  #投稿内容の編集や削除を投稿者のみに制限する
   def ensure_correct_user
+    # paramsメソッドで、飛んできたfeed.idを取得し、Feedモデルのデータベースから
+    # 該当のレコードの情報を取得し、変数@feedに代入する。
     @feed = Feed.find_by(id:params[:id])
+    #投稿者のuser_idとログインしているuser.idを検証し、異なる場合はログイン画面に飛ばす。
     if @feed.user_id != current_user.id
       flash[:notice] = "権限がありません"
       redirect_to new_session_url
